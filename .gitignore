@@ -1,0 +1,4 @@
+*.zip
+*.pdf
+**/flowers/
+**/20_newsgroups/
