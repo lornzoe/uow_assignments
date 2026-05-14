@@ -1,0 +1,16 @@
+bigdata@bigdata-VirtualBox:~/Downloads/uow_assignments/isit312/assignment1$ javac -cp $(hadoop classpath) -d . solution1.java
+bigdata@bigdata-VirtualBox:~/Downloads/uow_assignments/isit312/assignment1$ jar cf solution1.jar solution1.class
+bigdata@bigdata-VirtualBox:~/Downloads/uow_assignments/isit312/assignment1$ hdfs dfs -rm -r /usr/bigdata/*
+rm: `/usr/bigdata/*': No such file or directory
+bigdata@bigdata-VirtualBox:~/Downloads/uow_assignments/isit312/assignment1$ echo "solution1 test" > test.txt
+bigdata@bigdata-VirtualBox:~/Downloads/uow_assignments/isit312/assignment1$ hdfs dfs -mkdir -p /usr/bigdata
+bigdata@bigdata-VirtualBox:~/Downloads/uow_assignments/isit312/assignment1$ hdfs dfs -put -f test.txt /usr/bigdata/test_sol1.txt
+bigdata@bigdata-VirtualBox:~/Downloads/uow_assignments/isit312/assignment1$ hadoop jar solution1.jar solution1 /usr/bigdata/test_sol1.txt /usr/bigdata/test_dest_sol1.txt
+File successfully moved from /usr/bigdata/test_sol1.txt to /usr/bigdata/test_dest_sol1.txt
+bigdata@bigdata-VirtualBox:~/Downloads/uow_assignments/isit312/assignment1$ hdfs dfs -ls /usr/bigdata/test_dest_sol1.txt
+-rw-r--r--   1 bigdata supergroup         15 2026-04-30 20:57 /usr/bigdata/test_dest_sol1.txt
+bigdata@bigdata-VirtualBox:~/Downloads/uow_assignments/isit312/assignment1$ hdfs dfs -ls /usr/bigdata/
+Found 1 items
+-rw-r--r--   1 bigdata supergroup         15 2026-04-30 20:57 /usr/bigdata/test_dest_sol1.txt
+bigdata@bigdata-VirtualBox:~/Downloads/uow_assignments/isit312/assignment1$ hdfs dfs -cat /usr/bigdata/test_dest_sol1.txt
+solution1 test

@@ -1,10 +1,15 @@
+// ISIT312 Assignment 1 Task 1
+// Name: Lorenzo Sayo Yanga
+// UOW ID: 1036750
+// Tutorial Group: T02F
+
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 
 public class solution1 {
     public static void main(String[] args) {
-        if (args.length != 2) {
+        if (args.le000=-\`ngth != 2) {
             System.err.println("Usage: solution1 <source_path> <destination_path>");
             System.exit(-1);
         }

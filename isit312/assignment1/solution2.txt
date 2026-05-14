@@ -1,0 +1,111 @@
+bigdata@bigdata-VirtualBox:~$ cd Downloads/uow_assignments/isit312/assignment1/
+bigdata@bigdata-VirtualBox:~/Downloads/uow_assignments/isit312/assignment1$ hdfs dfs -rm -r -f /usr/bigdata/rainfall_input
+bigdata@bigdata-VirtualBox:~/Downloads/uow_assignments/isit312/assignment1$ hdfs dfs -rm -r -f /usr/bigdata/rainfall_output
+bigdata@bigdata-VirtualBox:~/Downloads/uow_assignments/isit312/assignment1$ javac -cp $(hadoop classpath) -d . solution2.java
+bigdata@bigdata-VirtualBox:~/Downloads/uow_assignments/isit312/assignment1$ jar cf solution2.jar solution2*.class
+bigdata@bigdata-VirtualBox:~/Downloads/uow_assignments/isit312/assignment1$ cat rainfall.txt 
+Queensland	Gold Coast	25
+Victoria	Melbourne	125
+Victoria	Geelong	90
+Victoria	Wodonga	10
+NSW	Lismore	900
+Queensland	Brisbane	50
+South Australia	Adelaide	300
+Western Australia	Perth	200
+Western Australia	Albany	200
+Western Australia	Broome	10
+NSW	Sydney	150
+NSW	Newcastle	80
+Victoria	Ballarat	65
+Queensland	Cairns	210
+South Australia	Mount Gambier	110
+Western Australia	Fremantle	45
+Tasmania	Hobart	95
+Tasmania	Launceston	85
+Northern Territory	Darwin	250
+ACT	Canberra	60
+bigdata@bigdata-VirtualBox:~/Downloads/uow_assignments/isit312/assignment1$ hdfs dfs -mkdir -p /usr/bigdata/rainfall_input
+bigdata@bigdata-VirtualBox:~/Downloads/uow_assignments/isit312/assignment1$ hdfs dfs -put rainfall.txt /usr/bigdata/rainfall_input/
+bigdata@bigdata-VirtualBox:~/Downloads/uow_assignments/isit312/assignment1$ hadoop jar solution2.jar solution2 /usr/bigdata/rainfall_input /usr/bigdata/rainfall_output
+26/04/30 21:13:53 INFO client.RMProxy: Connecting to ResourceManager at bigdata-VirtualBox/10.0.2.15:8032
+26/04/30 21:13:54 WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+26/04/30 21:13:54 INFO input.FileInputFormat: Total input paths to process : 1
+26/04/30 21:13:54 INFO mapreduce.JobSubmitter: number of splits:1
+26/04/30 21:13:54 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1777546252574_0002
+26/04/30 21:13:54 INFO impl.YarnClientImpl: Submitted application application_1777546252574_0002
+26/04/30 21:13:54 INFO mapreduce.Job: The url to track the job: http://bigdata-VirtualBox:8088/proxy/application_1777546252574_0002/
+26/04/30 21:13:54 INFO mapreduce.Job: Running job: job_1777546252574_0002
+26/04/30 21:13:58 INFO mapreduce.Job: Job job_1777546252574_0002 running in uber mode : false
+26/04/30 21:13:58 INFO mapreduce.Job:  map 0% reduce 0%
+26/04/30 21:14:01 INFO mapreduce.Job:  map 100% reduce 0%
+26/04/30 21:14:05 INFO mapreduce.Job:  map 100% reduce 100%
+26/04/30 21:14:05 INFO mapreduce.Job: Job job_1777546252574_0002 completed successfully
+26/04/30 21:14:05 INFO mapreduce.Job: Counters: 49
+	File System Counters
+		FILE: Number of bytes read=352
+		FILE: Number of bytes written=238631
+		FILE: Number of read operations=0
+		FILE: Number of large read operations=0
+		FILE: Number of write operations=0
+		HDFS: Number of bytes read=595
+		HDFS: Number of bytes written=178
+		HDFS: Number of read operations=6
+		HDFS: Number of large read operations=0
+		HDFS: Number of write operations=2
+	Job Counters 
+		Launched map tasks=1
+		Launched reduce tasks=1
+		Data-local map tasks=1
+		Total time spent by all maps in occupied slots (ms)=1022
+		Total time spent by all reduces in occupied slots (ms)=1043
+		Total time spent by all map tasks (ms)=1022
+		Total time spent by all reduce tasks (ms)=1043
+		Total vcore-milliseconds taken by all map tasks=1022
+		Total vcore-milliseconds taken by all reduce tasks=1043
+		Total megabyte-milliseconds taken by all map tasks=1046528
+		Total megabyte-milliseconds taken by all reduce tasks=1068032
+	Map-Reduce Framework
+		Map input records=20
+		Map output records=20
+		Map output bytes=306
+		Map output materialized bytes=352
+		Input split bytes=126
+		Combine input records=0
+		Combine output records=0
+		Reduce input groups=8
+		Reduce shuffle bytes=352
+		Reduce input records=20
+		Reduce output records=8
+		Spilled Records=40
+		Shuffled Maps =1
+		Failed Shuffles=0
+		Merged Map outputs=1
+		GC time elapsed (ms)=59
+		CPU time spent (ms)=420
+		Physical memory (bytes) snapshot=440463360
+		Virtual memory (bytes) snapshot=3824271360
+		Total committed heap usage (bytes)=315621376
+	Shuffle Errors
+		BAD_ID=0
+		CONNECTION=0
+		IO_ERROR=0
+		WRONG_LENGTH=0
+		WRONG_MAP=0
+		WRONG_REDUCE=0
+	File Input Format Counters 
+		Bytes Read=469
+	File Output Format Counters 
+		Bytes Written=178
+bigdata@bigdata-VirtualBox:~/Downloads/uow_assignments/isit312/assignment1$ hdfs dfs -ls /usr/bigdata/rainfall_output
+Found 2 items
+-rw-r--r--   1 bigdata supergroup          0 2026-04-30 21:14 /usr/bigdata/rainfall_output/_SUCCESS
+-rw-r--r--   1 bigdata supergroup        178 2026-04-30 21:14 /usr/bigdata/rainfall_output/part-r-00000
+bigdata@bigdata-VirtualBox:~/Downloads/uow_assignments/isit312/assignment1$ hdfs dfs -cat /usr/bigdata/rainfall_output/part-r-00000
+ACT	60 60 60
+NSW	1130 900 80
+Northern Territory	250 250 250
+Queensland	285 210 25
+South Australia	410 300 110
+Tasmania	180 95 85
+Victoria	290 125 10
+Western Australia	455 200 10

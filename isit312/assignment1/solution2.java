@@ -1,3 +1,8 @@
+// ISIT312 Assignment 1 Task 2
+// Name: Lorenzo Sayo Yanga
+// UOW ID: 1036750
+// Tutorial Group: T02F
+
 import java.io.IOException;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
