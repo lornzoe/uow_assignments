@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS employees;
 -- 1. Creates an internal relational table to store information about the employees,
 -- the projects they are assigned to (project name and percentage of involvement)
 -- and their programming skills.
