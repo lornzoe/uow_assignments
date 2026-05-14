@@ -1,3 +1,7 @@
+DROP TABLE IF EXISTS part;
+DROP TABLE IF EXISTS supplier;
+DROP TABLE IF EXISTS partsupp;
+
 -- Create External Table for PART
 CREATE EXTERNAL TABLE IF NOT EXISTS part (
     P_PARTKEY STRING,     
