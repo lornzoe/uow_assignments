@@ -1,0 +1,104 @@
+0: jdbc:hive2://localhost:10000> DROP TABLE IF EXISTS part;
+0: jdbc:hive2://localhost:10000> DROP TABLE IF EXISTS supplier;
+0: jdbc:hive2://localhost:10000> DROP TABLE IF EXISTS partsupp;
+0: jdbc:hive2://localhost:10000> 
+0: jdbc:hive2://localhost:10000> -- Create External Table for PART
+0: jdbc:hive2://localhost:10000> CREATE EXTERNAL TABLE IF NOT EXISTS part (
+. . . . . . . . . . . . . . . .>     P_PARTKEY STRING,     
+. . . . . . . . . . . . . . . .>     P_NAME STRING,        
+. . . . . . . . . . . . . . . .>     P_MFGR STRING,        
+. . . . . . . . . . . . . . . .>     P_BRAND STRING,       
+. . . . . . . . . . . . . . . .>     P_TYPE STRING,        
+. . . . . . . . . . . . . . . .>     P_SIZE INT,           
+. . . . . . . . . . . . . . . .>     P_CONTAINER STRING,   
+. . . . . . . . . . . . . . . .>     P_RETAILPRICE DOUBLE, 
+. . . . . . . . . . . . . . . .>     P_COMMENT STRING      
+. . . . . . . . . . . . . . . .> )
+. . . . . . . . . . . . . . . .> ROW FORMAT DELIMITED
+. . . . . . . . . . . . . . . .> FIELDS TERMINATED BY '|'
+. . . . . . . . . . . . . . . .> STORED AS TEXTFILE
+. . . . . . . . . . . . . . . .> LOCATION '/user/hive/warehouse/task4/part'
+. . . . . . . . . . . . . . . .> TBLPROPERTIES ("skip.header.line.count"="1");
+0: jdbc:hive2://localhost:10000> 
+0: jdbc:hive2://localhost:10000> -- Create External Table for SUPPLIER
+0: jdbc:hive2://localhost:10000> CREATE EXTERNAL TABLE IF NOT EXISTS supplier (
+. . . . . . . . . . . . . . . .>     S_SUPPKEY STRING,
+. . . . . . . . . . . . . . . .>     S_NAME STRING,   
+. . . . . . . . . . . . . . . .>     S_ADDRESS STRING,
+. . . . . . . . . . . . . . . .>     S_PHONE STRING,  
+. . . . . . . . . . . . . . . .>     S_ACCTBAL DOUBLE,
+. . . . . . . . . . . . . . . .>     S_COMMENT STRING 
+. . . . . . . . . . . . . . . .> )
+. . . . . . . . . . . . . . . .> ROW FORMAT DELIMITED
+. . . . . . . . . . . . . . . .> FIELDS TERMINATED BY '|'
+. . . . . . . . . . . . . . . .> STORED AS TEXTFILE
+. . . . . . . . . . . . . . . .> LOCATION '/user/hive/warehouse/task4/supplier'
+. . . . . . . . . . . . . . . .> TBLPROPERTIES ("skip.header.line.count"="1");
+0: jdbc:hive2://localhost:10000> 
+0: jdbc:hive2://localhost:10000> -- Create External Table for PART-SHIPPED-BY (PARTSUPP)
+0: jdbc:hive2://localhost:10000> CREATE EXTERNAL TABLE IF NOT EXISTS partsupp (
+. . . . . . . . . . . . . . . .>     PS_PARTKEY STRING,
+. . . . . . . . . . . . . . . .>     PS_SUPPKEY STRING,
+. . . . . . . . . . . . . . . .>     PS_AVAILQTY INT,     
+. . . . . . . . . . . . . . . .>     PS_SUPPLYCOST DOUBLE,
+. . . . . . . . . . . . . . . .>     PS_COMMENT STRING    
+. . . . . . . . . . . . . . . .> )
+. . . . . . . . . . . . . . . .> ROW FORMAT DELIMITED
+. . . . . . . . . . . . . . . .> FIELDS TERMINATED BY '|'
+. . . . . . . . . . . . . . . .> STORED AS TEXTFILE
+. . . . . . . . . . . . . . . .> LOCATION '/user/hive/warehouse/task4/partsupp'
+. . . . . . . . . . . . . . . .> TBLPROPERTIES ("skip.header.line.count"="1");
+0: jdbc:hive2://localhost:10000> 
+0: jdbc:hive2://localhost:10000> -- Output 5 rows from each table and the total count
+0: jdbc:hive2://localhost:10000> 
+0: jdbc:hive2://localhost:10000> SELECT * FROM part LIMIT 5;
++-----------------+-----------------------------------------+-----------------+---------------+--------------------------+--------------+-------------------+---------------------+-------------------------+--+
+| part.p_partkey  |               part.p_name               |   part.p_mfgr   | part.p_brand  |       part.p_type        | part.p_size  | part.p_container  | part.p_retailprice  |     part.p_comment      |
++-----------------+-----------------------------------------+-----------------+---------------+--------------------------+--------------+-------------------+---------------------+-------------------------+--+
+| 2               | blush rosy metallic lemon navajo        | Manufacturer#1  | Brand#13      | LARGE BRUSHED BRASS      | 1            | LG CASE           | 902.0               | final platelets hang f  |
+| 3               | dark green antique puff wheat           | Manufacturer#4  | Brand#42      | STANDARD POLISHED BRASS  | 21           | WRAP CASE         | 903.0               | unusual excuses ac      |
+| 4               | chocolate metallic smoke ghost drab     | Manufacturer#3  | Brand#34      | SMALL PLATED BRASS       | 14           | MED DRUM          | 904.0               | ironi                   |
+| 5               | forest blush chiffon thistle chocolate  | Manufacturer#3  | Brand#32      | STANDARD POLISHED TIN    | 15           | SM PKG            | 905.0               | pending, spe            |
+| 6               | white ivory azure firebrick black       | Manufacturer#2  | Brand#24      | PROMO PLATED STEEL       | 4            | MED BAG           | 906.0               | pending pinto be        |
++-----------------+-----------------------------------------+-----------------+---------------+--------------------------+--------------+-------------------+---------------------+-------------------------+--+
+0: jdbc:hive2://localhost:10000> SELECT COUNT(*) AS total_parts FROM part;
++--------------+--+
+| total_parts  |
++--------------+--+
+| 59999        |
++--------------+--+
+0: jdbc:hive2://localhost:10000> 
+0: jdbc:hive2://localhost:10000> SELECT * FROM supplier LIMIT 5;
++---------------------+---------------------+------------------------------------+-------------------+---------------------+---------------------+--+
+| supplier.s_suppkey  |   supplier.s_name   |         supplier.s_address         | supplier.s_phone  | supplier.s_acctbal  | supplier.s_comment  |
++---------------------+---------------------+------------------------------------+-------------------+---------------------+---------------------+--+
+| 2                   | Supplier#000000002  | 89eJ5ksX3ImxJQBvxObC,              | 5                 | NULL                | 4032.68             |
+| 3                   | Supplier#000000003  | q1,G3Pj6OjIuUYfUoH18BFTKP5aU9bEV3  | 1                 | NULL                | 4192.40             |
+| 4                   | Supplier#000000004  | Bk7ah4CK8SYQTepEmvMkkgMwg          | 15                | NULL                | 4641.08             |
+| 5                   | Supplier#000000005  | Gcdm2rJRzl5qlTVzc                  | 11                | NULL                | -283.84             |
+| 6                   | Supplier#000000006  | tQxuVm7s7CnK                       | 14                | NULL                | 1365.79             |
++---------------------+---------------------+------------------------------------+-------------------+---------------------+---------------------+--+
+0: jdbc:hive2://localhost:10000> SELECT COUNT(*) AS total_suppliers FROM supplier;
++------------------+--+
+| total_suppliers  |
++------------------+--+
+| 2999             |
++------------------+--+
+0: jdbc:hive2://localhost:10000> 
+0: jdbc:hive2://localhost:10000> SELECT * FROM partsupp LIMIT 5;
++----------------------+----------------------+-----------------------+-------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--+
+| partsupp.ps_partkey  | partsupp.ps_suppkey  | partsupp.ps_availqty  | partsupp.ps_supplycost  |                                                                                       partsupp.ps_comment                                                                                        |
++----------------------+----------------------+-----------------------+-------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--+
+| 1                    | 752                  | 8076                  | 993.49                  | careful pinto beans wake slyly furiously silent pinto beans. accounts wake pendi                                                                                                                 |
+| 1                    | 1502                 | 3956                  | 337.09                  | boldly silent requests detect. quickly regular courts are. instructions haggle ironic foxes. sometimes final orbits cajole fluffily around the unusual foxes. slyly silent theodolites cajole r  |
+| 1                    | 2252                 | 4069                  | 357.84                  | regular deposits are. furiously even packages cajole furiously. even pinto beans boost furiously final dependencies. f                                                                           |
+| 2                    | 3                    | 8895                  | 378.49                  | furiously even asymptotes are furiously regular plate                                                                                                                                            |
+| 2                    | 753                  | 4969                  | 915.27                  | even accounts wake furiously. idle instructions sleep in                                                                                                                                         |
++----------------------+----------------------+-----------------------+-------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--+
+0: jdbc:hive2://localhost:10000> SELECT COUNT(*) AS total_partsupp FROM partsupp;
++-----------------+--+
+| total_partsupp  |
++-----------------+--+
+| 239999          |
++-----------------+--+
+0: jdbc:hive2://localhost:10000> 
