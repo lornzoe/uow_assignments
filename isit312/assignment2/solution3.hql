@@ -1,4 +1,5 @@
 DROP TABLE IF EXISTS employees;
+
 -- 1. Creates an internal relational table to store information about the employees,
 -- the projects they are assigned to (project name and percentage of involvement)
 -- and their programming skills.
@@ -23,13 +24,13 @@ INSERT INTO employees SELECT '1', 'Employee 1', map('Project1', 30, 'Project2', 
 INSERT INTO employees SELECT '2', 'Employee 2', map('Project4', 50, 'Project5', 50), array('Python', 'Rust');
 
 -- One employee must participate in few projects and must not know any programming languages
-INSERT INTO employees SELECT '3', 'Employee 3', map('Project1', 70, 'Project2', 75), array();
+INSERT INTO employees SELECT '3', 'Employee 3', map('Project1', 70, 'Project2', 75), cast(array() as array<string>);
 
 -- One employee must know few programming languages and must not participate in any projects.
-INSERT INTO employees SELECT '4', 'Employee 4', map(), array('C', 'Rust');
+INSERT INTO employees SELECT '4', 'Employee 4', cast(map() as map<string, int>), array('C', 'Rust');
 
 -- One employee must not know programming languages and must not participate in the projects.
-INSERT INTO employees SELECT '5', 'Employee 5', map(), array();
+INSERT INTO employees SELECT '5', 'Employee 5', cast(map() as map<string, int>), cast(array() as array<string>);
 
 -- 3. Include into the script SELECT statements that list the contents of the table.
 SELECT * FROM employees;
