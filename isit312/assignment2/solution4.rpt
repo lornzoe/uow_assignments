@@ -1,3 +1,7 @@
+0: jdbc:hive2://localhost:10000> -- ISIT312 Assignment 2 Task 4
+0: jdbc:hive2://localhost:10000> -- Name: Lorenzo Sayo Yanga
+0: jdbc:hive2://localhost:10000> -- UOW ID: 1036750
+0: jdbc:hive2://localhost:10000> -- Tutorial Group: T02F
 0: jdbc:hive2://localhost:10000> DROP TABLE IF EXISTS part;
 0: jdbc:hive2://localhost:10000> DROP TABLE IF EXISTS supplier;
 0: jdbc:hive2://localhost:10000> DROP TABLE IF EXISTS partsupp;

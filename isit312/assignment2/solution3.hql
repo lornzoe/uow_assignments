@@ -1,3 +1,7 @@
+-- ISIT312 Assignment 2 Task 3
+-- Name: Lorenzo Sayo Yanga
+-- UOW ID: 1036750
+-- Tutorial Group: T02F
 DROP TABLE IF EXISTS employees;
 
 -- 1. Creates an internal relational table to store information about the employees,

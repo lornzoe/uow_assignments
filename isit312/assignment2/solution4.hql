@@ -1,3 +1,7 @@
+-- ISIT312 Assignment 2 Task 4
+-- Name: Lorenzo Sayo Yanga
+-- UOW ID: 1036750
+-- Tutorial Group: T02F
 DROP TABLE IF EXISTS part;
 DROP TABLE IF EXISTS supplier;
 DROP TABLE IF EXISTS partsupp;
