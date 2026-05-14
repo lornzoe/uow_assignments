@@ -1,0 +1,55 @@
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>304</x><y>435</y><w>220</w><h>160</h></coordinates><panel_attributes>Medical_Service
+--
+Total_Services_Count: +
+Total_Length_Minutes: +
+Average_Length_Minutes: Avg
+Total_Costs: +
+Doctor_Count: +
+Paramedic_Count: +
+Nurse_Count: +
+Average_Time_Spent: Avg
+bg=#ffcc99</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>14</x><y>455</y><w>150</w><h>100</h></coordinates><panel_attributes>Facility
+--
+_facility_id_
+name
+specialization
+bg=#cce5ff</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>654</x><y>455</y><w>150</w><h>130</h></coordinates><panel_attributes>Medical_Worker
+--
+_staff_number_
+name
+address
+phone
+credentials
+role_type
+bg=#cce5ff</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>334</x><y>335</y><w>150</w><h>60</h></coordinates><panel_attributes>Day
+--
+_date_
+day_of_week
+bg=#cce5ff</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>334</x><y>245</y><w>150</w><h>60</h></coordinates><panel_attributes>Month
+--
+_month_id_
+month_name
+bg=#cce5ff</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>334</x><y>155</y><w>150</w><h>60</h></coordinates><panel_attributes>Year
+--
+_year_number_
+bg=#cce5ff</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>334</x><y>655</y><w>150</w><h>60</h></coordinates><panel_attributes>Address
+--
+_address_id_
+street_name
+bg=#cce5ff</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>334</x><y>745</y><w>150</w><h>60</h></coordinates><panel_attributes>Suburb
+--
+_suburb_name_
+post_code
+bg=#cce5ff</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>334</x><y>835</y><w>150</w><h>60</h></coordinates><panel_attributes>City
+--
+_city_name_
+state
+bg=#cce5ff</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>154</x><y>505</y><w>170</w><h>30</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>10;10;150;10</additional_attributes></element><element><id>Relation</id><coordinates><x>514</x><y>505</y><w>160</w><h>30</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>10;10;140;10</additional_attributes></element><element><id>Relation</id><coordinates><x>404</x><y>385</y><w>30</w><h>70</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>10;10;10;50</additional_attributes></element><element><id>Relation</id><coordinates><x>404</x><y>295</y><w>50</w><h>60</h></coordinates><panel_attributes>lt=-
+m1=(0,n)
+m2=(1,1)</panel_attributes><additional_attributes>10;10;10;40</additional_attributes></element><element><id>Relation</id><coordinates><x>404</x><y>205</y><w>50</w><h>60</h></coordinates><panel_attributes>lt=-
+m1=(0,n)
+m2=(1,1)</panel_attributes><additional_attributes>10;10;10;40</additional_attributes></element><element><id>Relation</id><coordinates><x>404</x><y>585</y><w>30</w><h>90</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>10;70;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>404</x><y>705</y><w>50</w><h>60</h></coordinates><panel_attributes>lt=-
+m1=(1,1)
+m2=(0,n)</panel_attributes><additional_attributes>10;10;10;40</additional_attributes></element><element><id>Relation</id><coordinates><x>404</x><y>795</y><w>50</w><h>60</h></coordinates><panel_attributes>lt=-
+m1=(1,1)
+m2=(0,n)</panel_attributes><additional_attributes>10;10;10;40</additional_attributes></element></diagram>
