@@ -23,13 +23,13 @@ INSERT INTO employees SELECT '1', 'Employee 1', map('Project1', 30, 'Project2', 
 INSERT INTO employees SELECT '2', 'Employee 2', map('Project4', 50, 'Project5', 50), array('Python', 'Rust');
 
 -- Condition 2: One employee must participate in few projects and must not know any programming languages
-INSERT INTO employees SELECT '3', 'Employee 3', map('Project1', 70, 'Project2', 75), NULL;
+INSERT INTO employees SELECT '3', 'Employee 3', map('Project1', 70, 'Project2', 75), IF(false, array('dummy'), NULL);
 
 -- Condition 3: One employee must know few programming languages and must not participate in any projects.
-INSERT INTO employees SELECT '4', 'Employee 4', NULL, array('C', 'Rust');
+INSERT INTO employees SELECT '4', 'Employee 4', IF(false, map('dummy', 1), NULL), array('C', 'Rust');
 
 -- Condition 4: One employee must not know programming languages and must not participate in the projects.
-INSERT INTO employees SELECT '5', 'Employee 5', NULL, NULL;
+INSERT INTO employees SELECT '5', 'Employee 5', IF(false, map('dummy', 1), NULL), IF(false, array('dummy'), NULL);
 
--- 3. Include into the script SELECT statements that list the contents of the table.
+-- 3. SELECT statement to list the contents of the table
 SELECT * FROM employees;
